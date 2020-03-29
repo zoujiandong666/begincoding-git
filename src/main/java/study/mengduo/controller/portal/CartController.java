@@ -3,7 +3,6 @@ package study.mengduo.controller.portal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import study.mengduo.common.Const;
 import study.mengduo.common.ResponseCode;
@@ -19,12 +18,12 @@ import javax.servlet.http.HttpSession;
  * @date 2020/3/26 21:24
  */
 
-@RestController("/cart/")
+@RestController
+@RequestMapping("/cart/")
 public class CartController {
 
     @Autowired
     private ICartService iCartService;
-
 
     @GetMapping("list")
     public ServerResponse<CartVo> list(HttpSession session){
