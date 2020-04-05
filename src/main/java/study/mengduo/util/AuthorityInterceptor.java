@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * 登录拦截器
  * @aothor mengDuo
  * @date 2020/3/15 12:39
  */
@@ -70,10 +71,11 @@ public class AuthorityInterceptor implements HandlerInterceptor{
 
         if(user == null || (user.getRole().intValue() != Const.Role.ROLE_ADMIN)){
             //返回false.即不会调用controller里的方法
-            response.reset();//geelynote 这里要添加reset，否则报异常 getWriter() has already been called for this response.
-            response.setCharacterEncoding("UTF-8");//geelynote 这里要设置编码，否则会乱码
-            response.setContentType("application/json;charset=UTF-8");//geelynote 这里要设置返回值的类型，因为全部是json接口。
+            response.reset();// 这里要添加reset，否则报异常 getWriter() has already been called for this response.
+            response.setCharacterEncoding("UTF-8");// 这里要设置编码，否则会乱码
+            response.setContentType("application/json;charset=UTF-8");// 这里要设置返回值的类型，因为全部是json接口。
 
+            //被拦截器拦截后返回response内容给前端，不至于前端什么内容都没有
             PrintWriter out = response.getWriter();
 
             //上传由于富文本的控件要求，要特殊处理返回值，这里面区分是否登录以及是否有权限
@@ -97,7 +99,7 @@ public class AuthorityInterceptor implements HandlerInterceptor{
                 }
             }
             out.flush();
-            out.close();//geelynote 这里要关闭
+            out.close();// 这里要关闭
 
             return false;
 

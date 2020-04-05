@@ -1,5 +1,9 @@
 package study.mengduo.controller.portal;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @RequestMapping("/user/")
+@Api(tags = "校园商铺用户接入层")
 public class UserController {
 
     @Autowired
@@ -27,6 +32,11 @@ public class UserController {
 
 
     @PostMapping("login")
+    @ApiOperation(value = "登录",httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username",value = "用户名",dataType = "String",paramType = "query",required = true),
+            @ApiImplicitParam(name = "password",value = "密码",dataType = "String",paramType = "query",required = true)
+    })
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()){

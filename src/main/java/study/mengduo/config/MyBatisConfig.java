@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 /**
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2020/3/10 21:21
  */
 
-@EnableTransactionManagement
 @Configuration
 public class MyBatisConfig {
 
