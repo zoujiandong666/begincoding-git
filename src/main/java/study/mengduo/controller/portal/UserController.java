@@ -1,9 +1,6 @@
 package study.mengduo.controller.portal;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping("getUserInfo")
-    public ServerResponse<User> getUserInfo(HttpSession session){
+    public ServerResponse<User> getUserInfo(@ApiParam(hidden = true) HttpSession session){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user != null){
             return ServerResponse.creatBySuccess(user);
